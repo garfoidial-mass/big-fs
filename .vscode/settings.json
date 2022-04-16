@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "fstree.h": "c"
+        "fstree.h": "c",
+        "stdio.h": "c",
+        "argp.h": "c",
+        "bigfs.h": "c",
+        "typeinfo": "c",
+        "utlist.h": "c",
+        "stdlib.h": "c"
     }
 }
