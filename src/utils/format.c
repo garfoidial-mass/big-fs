@@ -8,23 +8,31 @@ int main(int argc, char** argv)
 {
     if(argc < 4)
     {
-        printf("usage: format <filename> <partition name (char)> <partition size in mb>");
+        printf("usage: format <filename> <partition name (char)> <partition size in mb>\n");
+        return 1;
     }
+    FILE* fs = fopen(argv[1],"w");
 
     //useful later in the program probably
     char* filename = argv[1];
     char partitionname = argv[2][0];
     uint32_t size = (atoi(argv[3])*MB_SIZE_BYTES);
 
-    FsPartition partition = createpartition(partitionname,size);
+    FsPartition* partition = createpartition(partitionname,size);
+    writepartition(partition,fs,true);
+    printf("formatted disk\n");
 
     char* filedata = "Testing Testing text file woohoo!!!!!!";
 
-    FsFile testfile = createfile("test.txt",strlen(filedata),(void*)filedata,&partition);
+    FsFile* testfile = createfile("test.txt",(void*)filedata,partition);
+    printf("created file\n");
+    writefile(testfile,partition,fs);
+    printf("wrote file\n");
 
-    //open file and resize it to proper size
-    FILE* fs = fopen(argv[1],"w");
-    writepartition(partition,fs);
+    //writepartition(partition,fs,false);
+    //printf("rewrote partition (no format)\n");
+
+    destroypartition(partition);
 
     fclose(fs);
 }
