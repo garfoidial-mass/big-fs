@@ -6,6 +6,9 @@
         "bigfs.h": "c",
         "typeinfo": "c",
         "utlist.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "stdint.h": "c",
+        "string.h": "c",
+        "uthash.h": "c"
     }
 }
